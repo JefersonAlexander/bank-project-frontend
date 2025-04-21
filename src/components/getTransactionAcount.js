@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import {
-  TextField,
-  Typography,
+  TextField,Typography,Button,
 } from '@mui/material';
-import TransactionList from './TransationList'
+import TransactionList from './TransationList';
 
 const TransactionAccountSearch = () => {
   const [accountNumber, setAccountNumber] = useState('');
-  const [showTransactions] = useState(false);
+  const [showTransactions, setShowTransactions] = useState(false);
 
-  
+  const handleSearch = () => {
+    if (accountNumber.trim()) {
+      setShowTransactions(true); // Actualiza el estado para mostrar las transacciones
+    }
+  };
 
   return (
     <div>
@@ -23,14 +26,21 @@ const TransactionAccountSearch = () => {
         variant="outlined"
         margin="normal"
       />
-      
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleSearch}
+        style={{ marginTop: '25px' }}
+      >
+        Buscar
+      </Button>
 
       {showTransactions && accountNumber.trim() && (
         <div style={{ marginTop: '20px' }}>
           <Typography variant="subtitle1">
             Historial de Transacciones para la cuenta: {accountNumber}
           </Typography>
-          <TransactionList accountNumber={accountNumber} /> 
+          <TransactionList accountNumber={accountNumber} />
         </div>
       )}
     </div>

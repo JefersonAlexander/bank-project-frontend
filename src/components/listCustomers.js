@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Typography,
-  CircularProgress,
-  Alert,
+  Table, TableBody,TableCell,TableContainer,TableHead,TableRow,Paper,Typography,CircularProgress, Alert,
 } from '@mui/material';
 import {getAllCustomers} from '../services/customerServices/getAllCustomers'
 

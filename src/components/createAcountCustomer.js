@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { TextField, Button, Container, Typography, Alert, Grid } from '@mui/material';
 import Box from '@mui/material/Box';
-import {createCustomerService} from '../services/customerServices/createCustomerService'
+import {CreateAcountCustomerService} from '../services/customerServices/createAcountCustomerService'
 
 
-const CreateCustomer = () => {
+const CreateAcountCustomer = () => {
   // State para almacenar los datos del formulario y el mensaje de error o éxito
   const [userData, setUserData] = useState({
     accountNumber: '',
@@ -25,15 +25,20 @@ const CreateCustomer = () => {
   // Función para manejar el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await createCustomerService(userData);
+    const response = await CreateAcountCustomerService(userData);
 
     if (response) {
       setSuccessMessage('Cliente creado ');
+      setUserData({ 
+        accountNumber: '',
+        firstName: '',
+        lastName: '',
+        balance: '',
+      });
     } else {
-      
       setErrorMessage('Error al crear cliente');
     }
-  };
+};
 
   return (
     <Container
@@ -42,7 +47,7 @@ const CreateCustomer = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '100vh',  // Esto asegura que el contenedor ocupe toda la altura de la pantalla
+        minHeight: '100vh',  
       }}
     >
     <Box 
@@ -117,8 +122,6 @@ const CreateCustomer = () => {
             />
           </Grid>
 
-          
-
           <Grid item xs={12}>
             <Button
               type="submit"
@@ -128,16 +131,13 @@ const CreateCustomer = () => {
             >
               Crear cliente
             </Button>
-
            
           </Grid>
-
           
-
         </Grid>
       </Box>
     </Container>
   );
 };
 
-export default CreateCustomer;
+export default CreateAcountCustomer;

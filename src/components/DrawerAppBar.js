@@ -1,18 +1,6 @@
 import React from 'react';
 import {
-  Box,
-  Divider,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Toolbar,
-  Typography,
-  Button,
-  IconButton,
-  CssBaseline,
-  AppBar,
-  Drawer,
+  Box,Divider,List,ListItem,ListItemButton,ListItemText,Toolbar,Typography, Button,IconButton,CssBaseline,AppBar,Drawer,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -32,7 +20,7 @@ function DrawerAppBar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        TollRoute
+        My Bank
       </Typography>
       <Divider />
       <List>
@@ -64,7 +52,7 @@ function DrawerAppBar(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
-            TollRoute
+            My Bank
           </Typography>
 
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>

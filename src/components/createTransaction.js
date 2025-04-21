@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Container, Typography, Alert, Grid } from '@mui/material';
 import Box from '@mui/material/Box';
-import { createTransactionService } from '../services/transactionServices/createTransactionService';
+import { CreateTransactionService } from '../services/transactionServices/createTransactionService';
 
 
 
@@ -25,15 +25,19 @@ const CreateTransaction = () => {
   // Función para manejar el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await createTransactionService(userData);
+    const response = await CreateTransactionService(userData);
 
     if (response) {
-      setSuccessMessage('Transación creada ');
+      setSuccessMessage('Transacción creada');
+      setUserData({ // Restablecer el formulario
+        senderAccountNumber: '',
+        receiverAccountNumber: '',
+        amount: '',
+      });
     } else {
-      
-      setErrorMessage('Error al crear la transación');
+      setErrorMessage('Error al crear la transacción');
     }
-  };
+};
 
   return (
     <Container
@@ -42,7 +46,7 @@ const CreateTransaction = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '100vh',  // Esto asegura que el contenedor ocupe toda la altura de la pantalla
+        minHeight: '100vh',  
       }}
     >
     <Box 

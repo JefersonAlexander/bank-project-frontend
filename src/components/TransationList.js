@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Typography,
-  CircularProgress,
-  Alert,
+  Table,TableBody,TableCell,TableContainer,TableHead,TableRow,Paper,Typography,CircularProgress,Alert,
 } from '@mui/material';
-import { getTransactionAcountService } from '../services/transactionServices/transactionsForAccountService'; 
+import { GetTransactionAcountService } from '../services/transactionServices/transactionsForAccountService'; 
 
 const TransactionList = ({ accountNumber }) => {
   const [transactions, setTransactions] = useState([]);
@@ -22,7 +13,7 @@ const TransactionList = ({ accountNumber }) => {
     const fetchTransactions = async () => {
       setLoading(true);
       setError(null);
-      const data = await getTransactionAcountService(accountNumber);
+      const data = await GetTransactionAcountService(accountNumber);
       if (data) {
         setTransactions(data);
       } else {
@@ -79,21 +70,25 @@ const TransactionList = ({ accountNumber }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {transactions.map((transaction) => (
-            <TableRow
-              key={transaction.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {transaction.id}
-              </TableCell>
-              <TableCell align="right">{transaction.senderAccountNumber}</TableCell>
-              <TableCell align="right">{transaction.receiverAccountNumber}</TableCell>
-              <TableCell align="right">{transaction.amount}</TableCell>
-              <TableCell align="right">{new Date(transaction.transactionDate).toLocaleString()}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
+            {transactions.map((transaction) => (
+              <TableRow
+                key={transaction.id}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {transaction.id}
+                </TableCell>
+                <TableCell align="right">{transaction.senderAccountNumber}</TableCell>
+                <TableCell align="right">{transaction.receiverAccountNumber}</TableCell>
+                <TableCell align="right">{transaction.amount}</TableCell>
+                <TableCell align="right">
+                  {transaction.timestamp
+                    ? new Date(transaction.timestamp).toLocaleString()
+                    : 'Fecha no disponible'}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
       </Table>
     </TableContainer>
   );
